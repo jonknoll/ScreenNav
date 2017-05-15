@@ -27,38 +27,13 @@ SOFTWARE.
 #include "ScreenNav.h"
 
 
-/*******************************************************************************
- * local definitions
- ******************************************************************************/
 //#define SERIAL_DEBUG
-
-
-
-/*******************************************************************************
- * local typedefs
- ******************************************************************************/
-
-
-/*******************************************************************************
- *  public variables
- ******************************************************************************/
-
-
-/*******************************************************************************
- *  local variables
- ******************************************************************************/
-
-
-/*******************************************************************************
- *  public functions
- ******************************************************************************/
 
 
 ScreenNav::ScreenNav()
 {
-#if 0
-   exitCallback_p = 0;
-#endif
+   currentScreen = 0;
+   prevScreen = 0;
 }
 
 void ScreenNav::start(screenHandlerFunc_t firstScreen)
@@ -94,41 +69,3 @@ void ScreenNav::changeScreen(screenHandlerFunc_t nextScreen_p)
 #endif
    currentScreen(EV_ENTER, (int)prevScreen);
 }
-
-
-#if 0
-void ScreenNav::delayEvent(uint32_t ms, int event, int param)
-{
-   delay(ms);
-   currentScreen(event, param);
-}
-
-void ScreenNav::enter()
-{
-   currentScreen(EV_ENTER, 0);
-}
-
-void ScreenNav::exit()
-{
-   currentScreen(EV_EXIT, (int)currentScreen);
-   currentScreen = ScreenNav::nullMenuHandler;
-   if(ScreenNav::exitCallback_p != 0)
-   {
-      navExitCallbackFunc_t();
-   }
-}
-
-void ScreenNav::setNavExitCallback(navExitCallbackFunc_t callbackFunc)
-{
-   exitCallback_p = callbackFunc;
-}
-
-void ScreenNav::nullMenuHandler(int event, int param)
-{
-}
-
-#endif
-
-/*******************************************************************************
- * local functions
- ******************************************************************************/

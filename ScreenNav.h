@@ -22,7 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 @description
-
+Will add later. For now, look at the example code. It gives a pretty good
+set of examples of how to write screens using this class.
 
 *******************************************************************************/
 #ifndef SCREENNAV_H
@@ -45,28 +46,15 @@ enum
    EV_ENTER = 1,
    EV_EXIT = 2,
    
-   // must be last in this list
+   // Set your first event enumeration to this value
    SCREEN_NAV_FIRST_CUSTOM_EVENT
 };
    
-   
 
-/*******************************************************************************
- * public typedefs
- ******************************************************************************/
+// Make all of your screen functions of this type
 typedef void (*screenHandlerFunc_t)(int event, int param);
-#if 0
-typedef void (*navExitCallbackFunc_t)(void);
-#endif
-
-/*******************************************************************************
- * public variables
- ******************************************************************************/
 
 
-/*******************************************************************************
- * public functions
- ******************************************************************************/
 
 class ScreenNav
 {
@@ -75,20 +63,10 @@ public:
    void start(screenHandlerFunc_t firstScreen);
    void sendEvent(int event, int param);
    void changeScreen(screenHandlerFunc_t nextScreen);
-#if 0
-   void delayEvent(uint32_t ms, int event, int param);
-   void enter();
-   void exit();
-   void setNavExitCallback(navExitCallbackFunc_t callbackFunc);
-#endif
    
 private:
    screenHandlerFunc_t currentScreen;
    screenHandlerFunc_t prevScreen;
-#if 0
-   navExitCallbackFunc_t exitCallback_p;
-   void nullMenuHandler(int event, int param);
-#endif
 };
 
 
